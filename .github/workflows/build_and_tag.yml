@@ -24,7 +24,7 @@ jobs:
         outputs:
             build-packer:  ${{ steps.check-packer.outputs.changed }}
             build-container: ${{ steps.check-app.outputs.changed }}
-            update-terraform: ${{ steps.check-terraform.changed }}
+            update-terraform: ${{ steps.check-terraform.outputs.changed }}
             manual-run: ${{ steps.manual-run.outputs.manual }}
 
         steps:
@@ -48,7 +48,7 @@ jobs:
             - name: Check for Terraform changes
               id: check-terraform
               working-directory: .github/scripts
-              run: ./check_files_changed.sh "*.tf" "${{ github.event_name }}" "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}"
+              run: ./check_files_changed.sh ".*\.tf" "${{ github.event_name }}" "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}"
               continue-on-error: true
 
             - name: Check for manual run

@@ -15,11 +15,16 @@ else
     CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
 fi
 
+echo "Changed files:"
+echo $CHANGED_FILES
+
 # Check if any changed files match our paths
 FILES_CHANGED=false
 for path in $PATHS; do
+    echo "Checking against regex: $path"
     if echo "$CHANGED_FILES" | grep -q "^${path}"; then
         FILES_CHANGED=true
+        echo "File changed: $path"
     break
     fi
 done
