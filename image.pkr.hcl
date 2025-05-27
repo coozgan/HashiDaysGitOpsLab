@@ -77,7 +77,7 @@ source "amazon-ebs" "hashistack" {
 
 build {
   hcp_packer_registry {
-    bucket_name = "nomad-consul-vault"
+    bucket_name = "nomad-consul"
 
     description = "AMI with Nomad, Consul and Vault"
 

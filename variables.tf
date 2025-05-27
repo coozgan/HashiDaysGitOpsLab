@@ -92,5 +92,5 @@ variable "public_client_count" {
 variable "hcp_packer_bucket_name" {
   type        = string
   description = "Name of the HCP Packer bucket containing the Nomad image"
-  default     = "nomad-consul-vault"
+  default     = "nomad-consul"
 }
