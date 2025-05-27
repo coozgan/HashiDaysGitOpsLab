@@ -19,6 +19,7 @@ jobs:
     check-files-changed:
         name : Check changed files
         runs-on: ubuntu-latest
+        if: github.event.commits[0].message != 'Initial commit'
         
         outputs:
             build-packer:  ${{ steps.check-packer.outputs.changed }}
