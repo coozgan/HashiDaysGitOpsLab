@@ -144,7 +144,7 @@ job "terramino" {
             }
 
             # Combined location block for all backend endpoints
-            location ~ ^/(redis|score|info) {
+            location ~ ^/(redis|score|info|env) {
                 proxy_pass http://terramino-backend.service.dc1.${var.consul_domain}:8100;
                 proxy_set_header Host $host;
                 proxy_set_header X-Real-IP $remote_addr;
