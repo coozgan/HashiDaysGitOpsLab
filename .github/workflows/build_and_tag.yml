@@ -36,16 +36,19 @@ jobs:
               id: check-packer
               working-directory: .github/scripts
               run: ./check_files_changed.sh "shared/** image.pkr.hcl" "${{ github.event_name }}" "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}"
+              continue-on-error: true
 
             - name: Check for application changes
               id: check-app
               working-directory: .github/scripts
               run: ./check_files_changed.sh "app/**" "${{ github.event_name }}" "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}"
+              continue-on-error: true
 
             - name: Check for Terraform changes
               id: check-terraform
               working-directory: .github/scripts
               run: ./check_files_changed.sh "*.tf" "${{ github.event_name }}" "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}"
+              continue-on-error: true
 
             - name: Check for manual run
               id: manual-run
