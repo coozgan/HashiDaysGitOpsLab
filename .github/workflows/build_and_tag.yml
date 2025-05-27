@@ -79,7 +79,7 @@ jobs:
             
             - name: Create and set channel
               working-directory: .github/scripts
-              run: ./create_channel_version.sh nomad-consul-vault ${{ github.sha }} production
+              run: ./create_channel_version.sh nomad-consul ${{ github.sha }} production
 
     build-application:
         name: Build Terramino images
