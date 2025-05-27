@@ -24,7 +24,7 @@ jobs:
             build-packer:  ${{ steps.check-packer.outputs.changed }}
             build-container: ${{ steps.check-app.outputs.changed }}
             update-terraform: ${{ steps.check-terraform.changed }}
-            manual-run: ${{ steps.manual-run.manual }}
+            manual-run: ${{ steps.manual-run.outputs.manual }}
 
         steps:
             - name: Checkout Repository
@@ -49,7 +49,7 @@ jobs:
 
             - name: Check for manual run
               id: manual-run
-              run: echo "manual=${{ github.event_name == 'workflow_dispatch' }}" >> $GITHUB_ENV
+              run: echo "manual=${{ github.event_name == 'workflow_dispatch' }}" >> $GITHUB_OUTPUT
     
     build-packer:
         name: Build AMI
@@ -158,7 +158,7 @@ jobs:
         name: Create tag
         runs-on: ubuntu-latest
         needs: [check-files-changed, build-packer, build-application]
-        if: ${{ always() && (needs.build-packer.result == 'success' || needs.build-application.result == 'success' || needs.check-files-changed.outputs.update-terraform == 'true' ||  needs.check-files-changed.outputs.manual-run == 'true' ) }}
+        if: ${{ always() && (needs.build-packer.result == 'success' || needs.build-application.result == 'success' || needs.check-files-changed.outputs.update-terraform == 'true' ) }}
         
         permissions:
             contents: write
