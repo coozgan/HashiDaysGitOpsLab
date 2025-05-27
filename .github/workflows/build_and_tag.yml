@@ -49,8 +49,7 @@ jobs:
 
             - name: Check for manual run
               id: manual-run
-              #run: echo "manual=${{ github.event_name == 'workflow_dispatch' }}" >> $GITHUB_ENV
-              run: echo "manual=false" >> $GITHUB_ENV
+              run: echo "manual=${{ github.event_name == 'workflow_dispatch' }}" >> $GITHUB_ENV
     
     build-packer:
         name: Build AMI
