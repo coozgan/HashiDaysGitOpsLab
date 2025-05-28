@@ -8,10 +8,10 @@ locals {
 # Register a job
 resource "nomad_job" "terramino" {
   jobspec    = local.rendered_jobspec
-  depends_on = [aws_instance.server[0]]
+  depends_on = [aws_instance.public_client[0]]
 }
 
 resource "nomad_job" "loadbalancer" {
   jobspec    = file("nomad/lb.nomad.hcl")
-  depends_on = [aws_instance.server[0]]
+  depends_on = [aws_instance.public_client[0]]
 }
