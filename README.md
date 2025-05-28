@@ -1,6 +1,6 @@
-# Set up a Nomad cluster on the major cloud platforms
+# GitOps Learn Lab
 
-This repo is a companion to the [Cluster Setup](https://developer.hashicorp.com/nomad/tutorials/cluster-setup) collection of tutorials, containing configuration files to create a Nomad cluster with ACLs enabled on AWS, GCP, and Azure.
+This repository contains the Packer template, Terraform configuration, and application code to deploy [Terramino](https://github.com/hashicorp-education/terramino-go) and the Nomad cluster it runs on to AWS.
 
 ## Setup action secrets
 
