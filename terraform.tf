@@ -30,7 +30,8 @@ provider "aws" {
 
 provider "consul" {
   datacenter     = var.datacenter
-  address        = "${aws_instance.server[0].public_ip}:8443"
+  #address        = "${aws_instance.server[0].public_ip}:8443"
+  address = "${aws_eip.nomad_consul.public_ip}:8443"
   token          = random_uuid.consul_mgmt_token.result
   ca_pem         = tls_self_signed_cert.datacenter_ca.cert_pem
   scheme         = "https"
@@ -38,7 +39,8 @@ provider "consul" {
 }
 
 provider "nomad" {
-  address     = "https://${aws_instance.server[0].public_ip}:4646"
+  #address     = "https://${aws_instance.server[0].public_ip}:4646"
+  address     = "https://${aws_eip.nomad_consul.public_ip}:4646"
   region      = var.domain
   secret_id   = random_uuid.nomad_mgmt_token.result
   ca_pem      = tls_self_signed_cert.datacenter_ca.cert_pem

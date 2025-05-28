@@ -70,4 +70,15 @@ resource "aws_instance" "server" {
     http_endpoint          = "enabled"
     instance_metadata_tags = "enabled"
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
+
+
+resource "aws_eip" "nomad_consul" {
+  domain = "vpc"
+  instance = aws_instance.server[0].id
+}
+

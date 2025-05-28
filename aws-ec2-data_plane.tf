@@ -62,4 +62,8 @@ resource "aws_instance" "public_client" {
     http_endpoint          = "enabled"
     instance_metadata_tags = "enabled"
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
