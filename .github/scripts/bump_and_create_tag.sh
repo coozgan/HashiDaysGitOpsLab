@@ -21,5 +21,6 @@ fi
 echo "Creating tag $TAG . . ."
 git config --local user.name "github-actions[bot]"
 git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+git pull origin main # Pull down the latest commit in case we created a new image version
 git tag -a $TAG -m "Create tag $TAG"
 git push origin $TAG
