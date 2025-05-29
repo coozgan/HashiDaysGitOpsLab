@@ -24,9 +24,7 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = var.region
-}
+provider "aws" { }
 
 provider "consul" {
   datacenter     = var.datacenter

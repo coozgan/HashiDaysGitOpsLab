@@ -59,9 +59,17 @@ job "terramino-proxy" {
                 add_header Content-Type application/json;
                 return 200 '{"status":"OK"}';
             }
-
+ 
             location / {
                 proxy_pass http://terramino-frontend.service.dc1.${var.consul_domain}:8101;
+                proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+                proxy_next_upstream_tries 3;
+                proxy_next_upstream_timeout 10s;
+                proxy_connect_timeout 5s;
+                proxy_send_timeout 10s;
+                proxy_read_timeout 10s;
+                proxy_http_version 1.1;
+                proxy_set_header Connection "";
             }
         }
         EOF

@@ -30,11 +30,6 @@ locals {
 # AWS Related Variables
 #------------------------------------------------------------------------------#
 
-variable "region" {
-  description = "The AWS region to deploy to."
-  default     = "us-east-2"
-}
-
 variable "allowlist_ip" {
   description = "IP to allow access for the security groups (set 0.0.0.0/0 for world)"
   default     = "0.0.0.0/0"

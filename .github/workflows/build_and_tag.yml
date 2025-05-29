@@ -42,7 +42,7 @@ jobs:
             - name: Check for application changes
               id: check-app
               working-directory: .github/scripts
-              run: ./check_files_changed.sh "app/**" "${{ github.event_name }}" "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}"
+              run: ./check_files_changed.sh "app/** nomad/**" "${{ github.event_name }}" "${{ github.event.pull_request.base.sha }}" "${{ github.sha }}"
               continue-on-error: true
 
             - name: Check for Terraform changes
