@@ -49,6 +49,10 @@ job "terramino-proxy" {
       }
       template {
         data        = <<EOF
+
+          resolver 172.17.0.1:53 valid=10s ipv6=off;
+          resolver_timeout 5s;
+
           server {
             listen 4444;
             server_name {{ env "NOMAD_IP_proxy" }};
@@ -61,7 +65,8 @@ job "terramino-proxy" {
             }
  
             location / {
-                proxy_pass http://terramino-frontend.service.dc1.${var.consul_domain}:8101;
+                set $backend "http://terramino-frontend.service.dc1.${var.consul_domain}:8101";
+                proxy_pass $backend;
                 proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
                 proxy_next_upstream_tries 3;
                 proxy_next_upstream_timeout 10s;
